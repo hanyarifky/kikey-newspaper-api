@@ -1,14 +1,32 @@
 import express from 'express';
+import mysql from 'mysql2/promise';
+import executeTimes from './execute_time.js';
 import 'dotenv/config';
 
 const app = express();
 const port = process.env.PORT || 4000;
+app.use(executeTimes);
 
-app.get('/', (req, res) => {
+// set database
+const connection = await mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  database: 'kikey_newspaper_app',
+});
+
+app.get('/', async (req, res) => {
+  try {
+    const [results, fields] = await connection.query('Select * from article');
+
+    console.log(results);
+    console.log(fields);
+  } catch (error) {
+    console.log(error);
+  }
   res.send('Hello, World');
 });
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
   res.send(`${req.method} is used`);
 });
 
