@@ -27,6 +27,18 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
+  try {
+    const query = `INSERT INTO article 
+                  VALUES('AT-003', 'Cesare Casadei Dipulangkan Lebih Awal', 'Muhammad Rifky Ramadhani',
+                  'Secara mengejutkan chelsea memulangkan pemain pinjamannya lebih awal dari kontrak', '2024-01-22')`;
+
+    const [result] = await connection.query(query);
+    if (!result) {
+      throw new Error();
+    }
+  } catch (error) {
+    console.log(error);
+  }
   res.send(`${req.method} is used`);
 });
 
