@@ -16,7 +16,7 @@ const connection = await mysql.createConnection({
 
 app.get('/', async (req, res) => {
   try {
-    const [results, fields] = await connection.query('Select * from article');
+    const [results, fields] = await connection.query('SELECT * FROM article');
 
     console.log(results);
     console.log(fields);
