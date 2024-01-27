@@ -20,3 +20,9 @@ export const addDataArticle = (data) => {
 
   return conn.execute(query);
 };
+
+export const deleteDataArticle = (id) => {
+  const query = `DELETE FROM article WHERE id_article = "${id}"`;
+
+  return conn.execute(query);
+};

@@ -1,5 +1,5 @@
 import express from 'express';
-import { addDataArticle } from '../model/model.js   ';
+import { addDataArticle, deleteDataArticle } from '../model/model.js   ';
 
 const route = express.Router();
 
@@ -21,7 +21,17 @@ route.put('/', (req, res) => {
   res.send(`This is writer site using http method: ${req.method}`);
 });
 
-route.delete('/', (req, res) => {
+route.delete('/:id', async (req, res) => {
+  try {
+    const [result] = await deleteDataArticle(req.params.id);
+
+    console.log(result);
+    if (!result) {
+      throw new Error();
+    }
+  } catch (error) {
+    console.log(error);
+  }
   res.send(`This is writer site using http method: ${req.method}`);
 });
 
