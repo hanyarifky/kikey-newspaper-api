@@ -11,3 +11,12 @@ export const showDataArticleById = (id) => {
 
   return conn.execute(query);
 };
+
+export const addDataArticle = (data) => {
+  const query = `INSERT INTO article VALUES (
+    "${data['id_article']}", "${data['title_article']}", 
+    "${data['writer_article']}", "${data['content_article']}", "${data['date_article']}"
+    )`;
+
+  return conn.execute(query);
+};

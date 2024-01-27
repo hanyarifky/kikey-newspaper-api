@@ -1,8 +1,19 @@
 import express from 'express';
+import { addDataArticle } from '../model/model.js   ';
 
 const route = express.Router();
 
-route.post('/', (req, res) => {
+route.post('/', async (req, res) => {
+  try {
+    const [result] = await addDataArticle(req.body);
+
+    console.log(result);
+    if (!result) {
+      throw new Error();
+    }
+  } catch (error) {
+    console.log(error);
+  }
   res.send(`This is writer site using http method: ${req.method} `);
 });
 
