@@ -3,6 +3,19 @@ import { addDataArticle, deleteDataArticle, showDataArticleById, updateDataArtic
 
 const route = express.Router();
 
+route.get('/:id', async (req, res) => {
+  try {
+    const [result] = await showDataArticleById(req.params.id);
+
+    res.status(200).json({
+      status: 'Success',
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 route.post('/', async (req, res) => {
   try {
     const [result] = await addDataArticle(req.body);
