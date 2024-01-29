@@ -21,6 +21,15 @@ export const addDataArticle = (data) => {
   return conn.execute(query);
 };
 
+export const updateDataArticle = (newData, id) => {
+  const query = `UPDATE article 
+  SET title_article = '${newData['title_article']}', writer_article = '${newData['writer_article']}', 
+  content_article = '${newData['content_article']}'
+  WHERE id_article = "${id}"`;
+
+  return conn.execute(query);
+};
+
 export const deleteDataArticle = (id) => {
   const query = `DELETE FROM article WHERE id_article = "${id}"`;
 
