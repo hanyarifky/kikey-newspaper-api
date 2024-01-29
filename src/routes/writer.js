@@ -7,6 +7,10 @@ route.get('/:id', async (req, res) => {
   try {
     const [result] = await showDataArticleById(req.params.id);
 
+    if (!result) {
+      throw new Error();
+    }
+
     res.status(200).json({
       status: 'Success',
       data: result,
