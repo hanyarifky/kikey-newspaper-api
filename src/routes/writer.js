@@ -20,22 +20,21 @@ route.post('/', async (req, res) => {
 route.put('/:id', async (req, res) => {
   try {
     const [resultData] = await showDataArticleById(req.params.id);
-    const { 
-      title_article = resultData[0]['title_article'], 
-      writer_article = resultData[0]['writer_article'], 
-      content_article = resultData[0]['content_article'] 
-    } = req.body;
-    
-    console.log(req.body);
+    const { title_article = resultData[0]['title_article'], writer_article = resultData[0]['writer_article'], content_article = resultData[0]['content_article'] } = req.body;
+
+    const currentDate = `${new Date().getFullYear()}-${new Date().getUTCMonth() + 1}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+    console.log(currentDate);
 
     const newData = {
       ...resultData[0],
       title_article,
       writer_article,
       content_article,
+      update_article: currentDate,
     };
 
     const [resultUpdate] = await updateDataArticle(newData, req.params.id);
+    console.log(resultUpdate);
 
     if (!resultUpdate) {
       res.status(400).send('Error');

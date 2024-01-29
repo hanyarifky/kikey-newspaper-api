@@ -24,7 +24,7 @@ export const addDataArticle = (data) => {
 export const updateDataArticle = (newData, id) => {
   const query = `UPDATE article 
   SET title_article = '${newData['title_article']}', writer_article = '${newData['writer_article']}', 
-  content_article = '${newData['content_article']}'
+  content_article = '${newData['content_article']}', update_article = '${newData['update_article']}'
   WHERE id_article = "${id}"`;
 
   return conn.execute(query);
