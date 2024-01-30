@@ -6,6 +6,7 @@ import writer from './routes/writer.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
+app.set("view engine", "")
 app.use(executeTimes);
 app.use(express.json());
 app.use('/', user);
